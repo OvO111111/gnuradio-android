@@ -13,9 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set timestamp
+        run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
+
       - name: Build the Docker image
         run: |
           docker build \
             --file docker/Dockerfile \
-            --tag my-image-name:$(date +%s) \
+            --tag my-image-name:${{ env.TAG }} \
             .
