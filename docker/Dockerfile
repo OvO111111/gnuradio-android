@@ -56,6 +56,8 @@ RUN yes | ./sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;30.0.0"
 RUN yes | ./sdkmanager --sdk_root=${ANDROID_HOME} "cmake;3.10.2.4988404"
 RUN yes | ./sdkmanager --sdk_root=${ANDROID_HOME} "cmdline-tools;latest"
 
+RUN sudo apt install bzip2 tar
+
 WORKDIR /home/$USER/src/gnuradio-android
 RUN ./build.sh
 RUN ./build_aarch64.sh
