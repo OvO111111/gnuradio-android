@@ -27,9 +27,16 @@ RUN git clone https://github.com/bastibl/gnuradio-android.git
 
 # Download a known good boost source & unpack
 WORKDIR /home/android/src/gnuradio-android/Boost-for-Android
-RUN wget https://boostorg.jfrog.io/artifactory/main/release/1.70.0/source/boost_1_70_0.tar.bz2
+
+# 下载 Boost 1.70.0 正式源代码包（使用 archives 地址）
+RUN wget -L https://archives.boost.io/release/1.70.0/source/boost_1_70_0.tar.bz2
+
+# 解压
 RUN tar xvjf boost_1_70_0.tar.bz2
+
+# 重命名
 RUN mv boost_1_70_0 boost
+
 
 # Modify scripts to use local boost folder
 RUN sed -i 's/1.69.0/boost/g' build-android.sh
